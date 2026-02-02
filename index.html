@@ -12,11 +12,21 @@
 
 
 <div class="image-container">
-  <img src="img/noggin.jpeg" alt="Noggin"/>
+  <div class="valentine-message" id="valentineMessage">
+    <p>Will you be my Valentine?</p>
+  </div>
+  <div class="image-wrapper" id="imageWrapper">
+    <div class="image-half left-half" id="leftHalf">
+      <img src="img/noggin.jpeg" alt="Noggin"/>
+    </div>
+    <div class="image-half right-half" id="rightHalf">
+      <img src="img/noggin.jpeg" alt="Noggin"/>
+    </div>
+  </div>
   <div class="overlay" id="overlay">
-    <p>Guess the password to crack the noggin open</p>
+    <p id="mainText">Guess the password to crack the noggin open</p>
     <input type="text" id="heartInput" placeholder="Hmmm... something happy"/>
-    <p class="hint">Hint: Turo</p>
+    <p class="hint" id="hintText">Hint: Turo</p>
   </div>
 </div>
 
@@ -26,18 +36,31 @@
     console.log("loaded")
     function checkPassword() {
       const input = document.getElementById('heartInput').value.toLowerCase();
-      const error = document.getElementById('error');
-      const overlay = document.getElementById("overlay");
 
       if (SECRET_PASSWORD.includes(input)) {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '0';
-        setTimeout(() => {
+        const mainText = document.getElementById('mainText');
+        const inputField = document.getElementById('heartInput');
+        const hintText = document.getElementById('hintText');
 
-          overlay.classList.add("fly-away");
-          console.log(overlay.classList)
-          // window.location.href = 'ask.html';
-        }, 1000);
+        // Each element flies off in a different direction
+        mainText.classList.add('fly-left');
+        setTimeout(() => inputField.classList.add('fly-up'), 100);
+        setTimeout(() => hintText.classList.add('fly-right'), 200);
+
+        // After text flies off, split the image and reveal the message
+        setTimeout(() => {
+          const leftHalf = document.getElementById('leftHalf');
+          const rightHalf = document.getElementById('rightHalf');
+          const valentineMessage = document.getElementById('valentineMessage');
+          const imageWrapper = document.getElementById('imageWrapper');
+
+          // Create firework/smoke effect
+          createFireworkEffect(imageWrapper);
+
+          leftHalf.classList.add('wilt-left');
+          rightHalf.classList.add('wilt-right');
+          valentineMessage.classList.add('reveal');
+        }, 800);
       } else {
         // error.classList.add('show');
         // document.getElementById('password').value = '';

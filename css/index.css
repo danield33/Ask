@@ -11,6 +11,7 @@ body {
   align-items: center;
   background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   font-family: 'Georgia', serif;
+  overflow: hidden;
 }
 
 /*.container {*/
@@ -126,9 +127,102 @@ input:focus {
   display: inline-block;
 }
 
-.image-container img {
+.valentine-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in 0.5s;
+}
+
+.valentine-message p {
+  font-size: 2.5rem;
+  color: #e75480;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.valentine-message.reveal {
+  opacity: 1;
+}
+
+.image-wrapper {
+  position: relative;
+  display: flex;
+  z-index: 1;
+  width: 50%;
+  justify-self: center;
+}
+
+.image-half {
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-half img {
   display: block;
-  max-width: 100%;
+  width: 200%;
+  max-width: none;
+}
+
+.left-half {
+  transform-origin: bottom left;
+}
+
+.right-half {
+  transform-origin: bottom right;
+}
+
+.right-half img {
+  transform: translateX(-50%);
+}
+
+/* Wilt animation for left half */
+.wilt-left {
+  animation: wiltLeft 1.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+@keyframes wiltLeft {
+  0% {
+    transform: rotate(0deg) translateY(0);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(-8deg) translateY(5px);
+  }
+  40% {
+    transform: rotate(-20deg) translateY(30px);
+  }
+  100% {
+    transform: rotate(-90deg) translateY(120vh) translateX(-30vw);
+    opacity: 0;
+  }
+}
+
+/* Wilt animation for right half */
+.wilt-right {
+  animation: wiltRight 1.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+@keyframes wiltRight {
+  0% {
+    transform: rotate(0deg) translateY(0);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(8deg) translateY(5px);
+  }
+  40% {
+    transform: rotate(20deg) translateY(30px);
+  }
+  100% {
+    transform: rotate(90deg) translateY(120vh) translateX(30vw);
+    opacity: 0;
+  }
 }
 
 .overlay {
@@ -138,6 +232,7 @@ input:focus {
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
+  z-index: 2;
 }
 
 input {
@@ -167,17 +262,56 @@ input {
   }
 }
 
-.fly-away {
-  animation: flyAway 1.2s ease-in forwards;
+.overlay p,
+.overlay input {
+  transition: transform 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045),
+              opacity 0.8s ease-out;
 }
 
-@keyframes flyAway {
+/* Fly off to the left */
+.fly-left {
+  animation: flyLeft 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+@keyframes flyLeft {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(0) rotate(0deg);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -120%) scale(0.2) rotate(20deg);
+    transform: translateX(-150vw) rotate(-45deg);
+  }
+}
+
+/* Fly off to the right */
+.fly-right {
+  animation: flyRight 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+@keyframes flyRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(150vw) rotate(45deg);
+  }
+}
+
+/* Fly off upward */
+.fly-up {
+  animation: flyUp 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+@keyframes flyUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150vh) rotate(20deg);
   }
 }
