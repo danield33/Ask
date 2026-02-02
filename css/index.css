@@ -13,40 +13,40 @@ body {
   font-family: 'Georgia', serif;
 }
 
-.container {
-  text-align: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-}
+/*.container {*/
+/*  text-align: center;*/
+/*  padding: 40px;*/
+/*  background: rgba(255, 255, 255, 0.9);*/
+/*  border-radius: 20px;*/
+/*  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);*/
+/*  max-width: 400px;*/
+/*}*/
 
-.heart {
-  font-size: 60px;
-  animation: pulse 1.5s ease-in-out infinite;
-}
+/*.heart {*/
+/*  font-size: 60px;*/
+/*  animation: pulse 1.5s ease-in-out infinite;*/
+/*}*/
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+/*@keyframes pulse {*/
+/*  0%, 100% { transform: scale(1); }*/
+/*  50% { transform: scale(1.1); }*/
+/*}*/
 
-h1 {
-  color: #e75480;
-  margin: 20px 0;
-  font-size: 1.8rem;
-}
+/*h1 {*/
+/*  color: #e75480;*/
+/*  margin: 20px 0;*/
+/*  font-size: 1.8rem;*/
+/*}*/
 
-p {
-  color: #666;
-  margin-bottom: 30px;
-  font-style: italic;
-}
+/*p {*/
+/*  color: #666;*/
+/*  margin-bottom: 30px;*/
+/*  font-style: italic;*/
+/*}*/
 
-.password-container {
-  position: relative;
-}
+/*.password-container {*/
+/*  position: relative;*/
+/*}*/
 
 input {
   padding: 15px 20px;
@@ -64,39 +64,40 @@ input:focus {
   box-shadow: 0 0 15px rgba(231, 84, 128, 0.3);
 }
 
-button {
-  margin-top: 20px;
-  padding: 15px 40px;
-  font-size: 1rem;
-  background: linear-gradient(135deg, #e75480, #ff6b9d);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/*button {*/
+/*  margin-top: 20px;*/
+/*  padding: 15px 40px;*/
+/*  font-size: 1rem;*/
+/*  background: linear-gradient(135deg, #e75480, #ff6b9d);*/
+/*  color: white;*/
+/*  border: none;*/
+/*  border-radius: 30px;*/
+/*  cursor: pointer;*/
+/*  transition: all 0.3s ease;*/
+/*}*/
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(231, 84, 128, 0.4);
-}
+/*button:hover {*/
+/*  transform: translateY(-2px);*/
+/*  box-shadow: 0 5px 20px rgba(231, 84, 128, 0.4);*/
+/*}*/
 
 .hint {
   margin-top: 20px;
   font-size: 0.85rem;
-  color: #999;
+  color: #2e7bdf;
+  font-weight: bold;
 }
 
-.error {
-  color: #e75480;
-  margin-top: 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+/*.error {*/
+/*  color: #e75480;*/
+/*  margin-top: 15px;*/
+/*  opacity: 0;*/
+/*  transition: opacity 0.3s ease;*/
+/*}*/
 
-.error.show {
-  opacity: 1;
-}
+/*.error.show {*/
+/*  opacity: 1;*/
+/*}*/
 
 .floating-hearts {
   position: fixed;
@@ -118,4 +119,65 @@ button:hover {
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+.heart {
+  position: absolute;
+  font-size: 15px;
+  animation: fall 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg) translateY(40px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(80px) scale(1.4) rotate(360deg);
+  }
+}
+
+.fly-away {
+  animation: flyAway 1.2s ease-in forwards;
+}
+
+@keyframes flyAway {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -120%) scale(0.2) rotate(20deg);
+  }
 }
