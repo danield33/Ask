@@ -315,3 +315,50 @@ input {
     transform: translateY(-150vh) rotate(20deg);
   }
 }
+
+/* Firework particles */
+.firework-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  animation: fireworkExplode 1.2s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+  0% {
+    transform: translate(0, 0) scale(3);
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(10);
+    opacity: 0;
+  }
+}
+
+/* Smoke/puff particles */
+.smoke-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,200,200,0.4) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 9;
+  animation: smokeRise 1.8s ease-out forwards;
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: scale(0.5) translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.5) translateY(-80px);
+    opacity: 0;
+  }
+}
