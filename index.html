@@ -14,6 +14,10 @@
 <div class="image-container">
   <div class="valentine-message" id="valentineMessage">
     <p>Will you be my Valentine?</p>
+    <div class="buttons">
+      <button class="btn btn-yes" onclick="sayYes()">Yes!</button>
+      <button class="btn btn-no" id="noBtn">No</button>
+    </div>
   </div>
   <div class="image-wrapper" id="imageWrapper">
     <div class="image-half left-half" id="leftHalf">
@@ -33,7 +37,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const SECRET_PASSWORD = ["happydaniel1234", "happydaniel123", "happydaniel123!"];
-    console.log("loaded")
+
     function checkPassword() {
       const input = document.getElementById('heartInput').value.toLowerCase();
 
@@ -56,10 +60,11 @@
 
           // Create firework/smoke effect
           createFireworkEffect(imageWrapper);
-
+          document.getElementById('overlay').style.display = 'none';
           leftHalf.classList.add('wilt-left');
           rightHalf.classList.add('wilt-right');
           valentineMessage.classList.add('reveal');
+          setTimeout(() => {imageWrapper.style.zIndex = '-1';}, 2000);
         }, 1200);
       } else {
         // error.classList.add('show');
@@ -198,6 +203,25 @@
     mirror.innerHTML = "";
 
     return rect.left + caretOffset;
+  }
+
+  function sayYes() {
+    console.log("YES")
+    const overlay = document.getElementById('overlay');
+    const successContent = document.getElementById('successContent');
+
+    overlay.classList.add('show');
+
+    // Start fireworks
+    startFireworks();
+
+    // Show success content with delay
+    setTimeout(() => {
+      successContent.classList.add('show');
+    }, 500);
+
+    // Create falling hearts
+    createFallingHearts();
   }
 
 </script>

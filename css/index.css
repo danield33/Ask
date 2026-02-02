@@ -136,6 +136,7 @@ input:focus {
   z-index: 0;
   opacity: 0;
   transition: opacity 0.8s ease-in 0.5s;
+  width: 50%;
 }
 
 .valentine-message p {
@@ -361,4 +362,43 @@ input {
     transform: scale(2.5) translateY(-80px);
     opacity: 0;
   }
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  min-height: 60px;
+}
+
+.btn {
+  padding: 15px 50px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #e75480, #ff6b9d);
+  color: white;
+}
+
+.btn-yes:hover {
+  transform: scale(1.5);
+  box-shadow: 0 5px 25px rgba(231, 84, 128, 0.5);
+}
+
+.btn-no {
+  background: #f0f0f0;
+  color: #999;
+  transition: all 0.1s ease;
+}
+
+.btn-no:hover {
+  background: #e0e0e0;
 }
